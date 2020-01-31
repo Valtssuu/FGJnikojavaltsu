@@ -17,7 +17,8 @@ public class DragNDrop : MonoBehaviour
     void Update()
     {
 
-        hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.23f, 0), -transform.up, 0.5f);
+        hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.24f, 0), -transform.up, 0.1f, 1 << 8);
+        Debug.DrawRay(this.transform.position + new Vector3(0, -0.24f, 0), -transform.up);
         if (hit.collider != null)
         {
             isOnTopOfSomething = true;
@@ -26,21 +27,27 @@ public class DragNDrop : MonoBehaviour
         {
             isOnTopOfSomething = false;
         }
-
+        Debug.Log(isOnTopOfSomething);
         if (isBeingHeld == true)
         {
+            this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
             Vector3 mousePos;
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-            transform.rotation = Quaternion.identity;
+            //transform.rotation = Quaternion.identity;
 
             this.gameObject.transform.localPosition = new Vector3(mousePos.x, mousePos.y, 0);
+        }
+
+        else
+        {
+            this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
         }
         if(isOnTopOfSomething == true)
         {
             if (isSnapped == true)
             {
-                this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             }
             else
             {
@@ -57,7 +64,6 @@ public class DragNDrop : MonoBehaviour
             Vector3 mousePos;
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-
             isBeingHeld = true;
         }
         
@@ -66,6 +72,7 @@ public class DragNDrop : MonoBehaviour
     private void OnMouseUp()
     {
         isBeingHeld = false;
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -76,8 +83,16 @@ public class DragNDrop : MonoBehaviour
             {
                 this.transform.position = collision.gameObject.transform.position;
                 isSnapped = true;
+                gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             }
-            
+            else
+            {
+                isSnapped = false;
+                gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
+
+            }
+
         }
     }
 
