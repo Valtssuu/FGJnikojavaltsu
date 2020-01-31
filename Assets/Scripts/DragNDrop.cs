@@ -10,10 +10,24 @@ public class DragNDrop : MonoBehaviour
     private float startPosY;
     private bool isBeingHeld = false;
     private bool isSnapped = false;
+    private bool isOnTopOfSomething = false;
+
+    public RaycastHit2D hit;
     // Update is called once per frame
     void Update()
     {
-        if(isBeingHeld == true)
+
+        hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.23f, 0), -transform.up, 0.5f);
+        if (hit.collider != null)
+        {
+            isOnTopOfSomething = true;
+        }
+        else
+        {
+            isOnTopOfSomething = false;
+        }
+
+        if (isBeingHeld == true)
         {
             Vector3 mousePos;
             mousePos = Input.mousePosition;
@@ -22,15 +36,18 @@ public class DragNDrop : MonoBehaviour
 
             this.gameObject.transform.localPosition = new Vector3(mousePos.x, mousePos.y, 0);
         }
-
-        if(isSnapped == true)
+        if(isOnTopOfSomething == true)
         {
-            this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            if (isSnapped == true)
+            {
+                this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            }
+            else
+            {
+                this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            }
         }
-        else
-        {
-            this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        }
+        
     }
 
     private void OnMouseDown()
@@ -55,8 +72,12 @@ public class DragNDrop : MonoBehaviour
     {
         if(collision.gameObject.tag == "GridSlot")
         {
-            this.transform.position = collision.gameObject.transform.position;
-            isSnapped = true;
+            if(isOnTopOfSomething == true)
+            {
+                this.transform.position = collision.gameObject.transform.position;
+                isSnapped = true;
+            }
+            
         }
     }
 
