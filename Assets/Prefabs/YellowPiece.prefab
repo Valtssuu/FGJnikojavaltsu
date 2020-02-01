@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3237320081131025750}
   - component: {fileID: 153197486391735521}
   - component: {fileID: 7883295564165174515}
-  - component: {fileID: 895442150742756519}
+  - component: {fileID: -5705544858421089289}
   m_Layer: 8
   m_Name: YellowPiece
   m_TagString: Piece
@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628430080621495747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5004, y: -4.5421, z: 0}
-  m_LocalScale: {x: 0.13304171, y: 0.24554606, z: 1}
+  m_LocalPosition: {x: -1.749847, y: -4.75004, z: 0}
+  m_LocalScale: {x: 0.06659161, y: 0.13579576, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -157,7 +157,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.5, y: 3.68}
   m_EdgeRadius: 0
---- !u!114 &895442150742756519
+--- !u!114 &-5705544858421089289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,7 +166,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1628430080621495747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3afb97628a73970408b5f74f5c03dc96, type: 3}
+  m_Script: {fileID: 11500000, guid: f472be635b49f354fad24b1b51c270d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeColor: 1
   isSnapped: 0
