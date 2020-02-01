@@ -5,12 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - GridSlot
-  - Ground
   - GridYellow
   - GridRed
   - Piece
   - GameCanvas
   - GridBlue
+  - ScreenBorder
   layers:
   - Default
   - TransparentFX

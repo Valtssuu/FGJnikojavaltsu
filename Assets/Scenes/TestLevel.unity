@@ -644,11 +644,11 @@ GameObject:
   - component: {fileID: 596809370}
   m_Layer: 8
   m_Name: RightWall
-  m_TagString: Ground
+  m_TagString: ScreenBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &596809370
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1006,7 +1006,7 @@ GameObject:
   - component: {fileID: 1457215034}
   m_Layer: 8
   m_Name: Ground
-  m_TagString: Ground
+  m_TagString: ScreenBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1195,7 +1195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778e465eb2fab4d46a47b11311c16962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridParent: {fileID: 0}
+  gridParent: {fileID: 19465397}
 --- !u!50 &1490828583
 Rigidbody2D:
   serializedVersion: 4
@@ -1272,7 +1272,7 @@ GameObject:
   - component: {fileID: 1912864409}
   m_Layer: 8
   m_Name: LeftWall
-  m_TagString: Ground
+  m_TagString: ScreenBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
