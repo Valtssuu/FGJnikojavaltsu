@@ -24,7 +24,6 @@ public class RedCube : MonoBehaviour
             this.gameObject.transform.position = new Vector3(startPosX, startPosY, 0);
         }
 
-        Debug.Log(isOnTopOfSomething);
         // casting ray down 
         hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.53f, 0), -transform.up, 0.1f, 1 << 8);
 
