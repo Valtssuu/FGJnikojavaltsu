@@ -121,8 +121,9 @@ public class YellowCube : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        string collisionTag = collision.gameObject.tag;
         // Check if trigger is an object with screen border tag
-        if (collision.gameObject.tag == "Ground")
+        if (collisionTag == "Ground")
         {
             groundCollision = true;
         }
