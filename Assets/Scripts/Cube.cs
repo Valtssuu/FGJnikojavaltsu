@@ -12,9 +12,8 @@ public class Cube : MonoBehaviour
         BlueCube
     }
 
+    public GameObject starParticle;
     public CubeColor cubeColor;
-    public Bomb bomb;
-    private bool blown = false;
     private string gridColor;
     private float startPosX = 0;
     private float startPosY = 0;
@@ -22,14 +21,13 @@ public class Cube : MonoBehaviour
     public bool isSnapped = false;
     private bool isOnTopOfSomething = false;
     // Boolean flag to check if object is colliding with ground object
-    private bool groundCollision = false;
-    public GameObject particleStar;
+    private bool borderCollision = false;
+    private List<string> borderCollisions = new List<string>();
+
     public RaycastHit2D hit;
 
     void Start()
     {
-        Time.timeScale = 0;
-        bomb = GameObject.FindGameObjectWithTag("Bomb").GetComponent<Bomb>();
         switch (cubeColor)
         {
             case CubeColor.RedCube:
@@ -40,17 +38,15 @@ public class Cube : MonoBehaviour
                 break;
             case CubeColor.BlueCube:
                 gridColor = "GridBlue";
-                break;
+                break;            
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (bomb.blow)
-        {
-            Blow();
-        }
+
+        
         // Reset object position if it falls offscreen
         if (this.gameObject.transform.position.y <= -30)
         {
@@ -70,32 +66,72 @@ public class Cube : MonoBehaviour
             isOnTopOfSomething = false;
         }
 
-
         //when piece is held by mouse/touch
 
         if (isBeingHeld == true)
         {
             // New y-axis position when dragging an object
-            float newPosY;
-            // Object's y-axis position before checking dragging
+            float newPosX, newPosY;
+            // Object's xy-axis components before checking curcor dragging
+            float objectPosX = this.gameObject.transform.position.x;
             float objectPosY = this.gameObject.transform.position.y;
+            // Booleans to check if dragging along either of the axes should be restricted
+            bool restrictX = false;
+            bool restrictY = false;
 
             //gravity is disabled and piece follows mouses/touches position
             this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            Vector3 mousePos;
-            mousePos = Input.mousePosition;
+            Vector3 mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
             transform.rotation = Quaternion.identity;
 
-            // If object is in collision with ground and mouse y-position is 
-            // high enough, reset ground collision state
-            if (groundCollision == true && mousePos.y > objectPosY)
+            if (borderCollision == true)
             {
-                groundCollision = false;
+                // Iterate through all colliding objects and set axes to restrict
+                foreach (string collObject in borderCollisions)
+                {
+                    switch (collObject)
+                    {
+                    case "LeftWall":
+                    case "RightWall":
+                        restrictX = true;
+                        break;
+                    case "Ground":
+                        restrictY = true;
+                        break;
+                    }
+                }
             }
 
-            // If ground collision flag is set, prevent y-axis movement
-            if (groundCollision == true)
+            // Stop restricting either of the axes if object is dragged towards the centre
+            if (restrictX && Mathf.Abs(mousePos.x) < Mathf.Abs(objectPosX))
+            {
+                Debug.Log("YEET");
+                restrictX = false;
+            }
+
+            if (restrictY && (objectPosY < mousePos.y))
+            {
+                restrictY = false;
+            }
+            
+            // If no axes are restricted the object is not colliding with screen borders
+            if (!restrictX && !restrictX && !restrictY && borderCollision)
+            {
+                borderCollision = false;
+            }
+
+            // Set new x and y coordinates for the object depending on if axes are restricted or not
+            if (restrictX)
+            {
+                newPosX = objectPosX;
+            }
+            else
+            {
+                newPosX = mousePos.x;
+            }
+
+            if (restrictY)
             {
                 newPosY = objectPosY;
             }
@@ -106,7 +142,7 @@ public class Cube : MonoBehaviour
                 newPosY = mousePos.y;
             }
 
-            this.gameObject.transform.localPosition = new Vector3(mousePos.x, newPosY, 0);
+            this.gameObject.transform.localPosition = new Vector3(newPosX, newPosY, 0);
         }
         else
         {
@@ -120,13 +156,12 @@ public class Cube : MonoBehaviour
         {
             this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             transform.rotation = Quaternion.identity;
-            particleStar.SetActive(true);
+            starParticle.SetActive(true);
         }
         else
         {
             this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
-
     }
 
     private void OnMouseDown()
@@ -150,9 +185,11 @@ public class Cube : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         // Check if trigger is an object with screen border tag
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "ScreenBorder")
         {
-            groundCollision = true;
+            borderCollision = true;
+
+            borderCollisions.Add(collision.gameObject.name);
         }
 
         //when inside gridslots trigger piece snaps to it
@@ -172,21 +209,6 @@ public class Cube : MonoBehaviour
                 }
             }
         }
-    }
-
-
-
-    public void Blow()
-    {
-        Time.timeScale = 1;
-        float distance = Vector2.Distance(bomb.transform.position, this.transform.position);
-        Vector3 bombForce = bomb.kiloTons * (transform.position - bomb.transform.position) / (distance * distance);
-        Debug.Log(gameObject.ToString());
-        if (!blown)
-        {
-            this.GetComponent<Rigidbody2D>().AddForce(bombForce, ForceMode2D.Impulse);
-        }
-        blown = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
