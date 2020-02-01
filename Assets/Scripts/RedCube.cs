@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragNDrop : MonoBehaviour
+public class RedCube : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -26,7 +26,7 @@ public class DragNDrop : MonoBehaviour
 
         Debug.Log(isOnTopOfSomething);
         // casting ray down 
-        hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.33f, 0), -transform.up, 0.1f, 1 << 8);
+        hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.53f, 0), -transform.up, 0.1f, 1 << 8);
 
         //if ray hits something we change boolean "isOnTopOfSomething" to true and false if it doesn't hit anything
         if (hit.collider != null)
@@ -126,7 +126,7 @@ public class DragNDrop : MonoBehaviour
         //when inside gridslots trigger piece snaps to it
         if(isBeingHeld == false)
         {
-            if (collision.gameObject.tag == "GridSlot")
+            if (collision.gameObject.tag == "GridRed")
             {
                 if (isOnTopOfSomething == true)
                 {
@@ -145,7 +145,7 @@ public class DragNDrop : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         //when exiting trigger snapping stops
-        if (collision.gameObject.tag == "GridSlot")
+        if (collision.gameObject.tag == "GridRed")
         {
             isSnapped = false;
         }
