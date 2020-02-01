@@ -8,10 +8,7 @@ public class MainMenu : MonoBehaviour
 
     public GameObject pausePanel;
 
-    public void TestLevel()
-    {
-        SceneManager.LoadScene("TestLevel");
-    }
+    
 
     public void LevelSelection()
     {
@@ -39,6 +36,20 @@ public class MainMenu : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
         
+
+    }
+    public void TestLevel()
+    {
+        SceneManager.LoadScene("TestLevel");
+    }
+    public void Level1()
+    {
+        SceneManager.LoadScene("Level 1");
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
 }
