@@ -40,13 +40,14 @@ public class YellowCube : MonoBehaviour
         Debug.Log(hit.collider);
 
         //when piece is held by mouse/touch
+        
         if (isBeingHeld == true)
         {
             // New y-axis position when dragging an object
             float newPosY;
             // Object's y-axis position before checking dragging
             float objectPosY = this.gameObject.transform.position.y;
-            
+
             //gravity is disabled and piece follows mouses/touches position
             this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             Vector3 mousePos;
@@ -56,22 +57,22 @@ public class YellowCube : MonoBehaviour
 
             // If object is in collision with ground and mouse y-position is 
             // high enough, reset ground collision state
-            if (groundCollision == true && mousePos.y > objectPosY) 
+            if (groundCollision == true && mousePos.y > objectPosY)
             {
                 groundCollision = false;
             }
 
             // If ground collision flag is set, prevent y-axis movement
-            if (groundCollision == true) 
+            if (groundCollision == true)
             {
                 newPosY = objectPosY;
             }
 
             // Object is not in collision and can move freely with cursor
-            else 
+            else
             {
                 newPosY = mousePos.y;
-            }  
+            }
 
             this.gameObject.transform.localPosition = new Vector3(mousePos.x, newPosY, 0);
         }
@@ -80,32 +81,36 @@ public class YellowCube : MonoBehaviour
         {
             this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
+        
 
         //if piece has snapped to grid
         //rigidbody changes from dynamic to kinematic
 
+
         
         if (isSnapped == true)
         {
-            if (isSnapped == true)
-            {
-                this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-                transform.rotation = Quaternion.identity;
-            }
-            else
-            {
-                this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            }
-        }  
+            this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            transform.rotation = Quaternion.identity;
+        }
+        else
+        {
+            this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        }
+        
     }
 
     private void OnMouseDown()
     {
         //when player holds mouse or touch isBeingHeld changes to true
-        if (Input.GetMouseButtonDown(0))
+        if(isSnapped == false)
         {
-            isBeingHeld = true;
-        }     
+            if (Input.GetMouseButtonDown(0))
+            {
+                isBeingHeld = true;
+            }
+        }
+        
     }
 
     private void OnMouseUp()

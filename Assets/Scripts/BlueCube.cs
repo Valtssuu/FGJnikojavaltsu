@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedCube : MonoBehaviour
+public class BlueCube : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -82,12 +82,11 @@ public class RedCube : MonoBehaviour
             this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
         
-        
 
         //if piece has snapped to grid
         //rigidbody changes from dynamic to kinematic
 
-        
+
         
         if (isSnapped == true)
         {
@@ -98,7 +97,7 @@ public class RedCube : MonoBehaviour
         {
             this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
-         
+        
     }
 
     private void OnMouseDown()
@@ -111,7 +110,7 @@ public class RedCube : MonoBehaviour
                 isBeingHeld = true;
             }
         }
-           
+        
     }
 
     private void OnMouseUp()
@@ -131,7 +130,7 @@ public class RedCube : MonoBehaviour
         //when inside gridslots trigger piece snaps to it
         if(isBeingHeld == false)
         {
-            if (collision.gameObject.tag == "GridRed")
+            if (collision.gameObject.tag == "GridBlue")
             {
                 if (isOnTopOfSomething == true)
                 {
@@ -150,7 +149,7 @@ public class RedCube : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         //when exiting trigger snapping stops
-        if (collision.gameObject.tag == "GridRed")
+        if (collision.gameObject.tag == "GridBlue")
         {
             isSnapped = false;
         }
