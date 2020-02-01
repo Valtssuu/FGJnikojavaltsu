@@ -9,7 +9,7 @@ public class YellowCube : MonoBehaviour
     private float startPosX = 0;
     private float startPosY = 0;
     private bool isBeingHeld = false;
-    private bool isSnapped = false;
+    public bool isSnapped = false;
     private bool isOnTopOfSomething = false;
     // Boolean flag to check if object is colliding with ground object
     private bool groundCollision = false;
