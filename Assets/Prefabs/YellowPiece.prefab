@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 895442150742756519}
   m_Layer: 8
   m_Name: YellowPiece
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,3 +169,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afb97628a73970408b5f74f5c03dc96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSnapped: 0
