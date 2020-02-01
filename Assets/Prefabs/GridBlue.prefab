@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1119808683939106042}
   - component: {fileID: 8496204921420607297}
   m_Layer: 2
-  m_Name: GridYellow
-  m_TagString: GridYellow
+  m_Name: GridBlue
+  m_TagString: GridBlue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
