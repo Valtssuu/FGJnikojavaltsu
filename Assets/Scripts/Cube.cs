@@ -14,6 +14,7 @@ public class Cube : MonoBehaviour
 
     public CubeColor cubeColor;
     public Bomb bomb;
+    private bool blown = false;
     private string gridColor;
     private float startPosX = 0;
     private float startPosY = 0;
@@ -27,6 +28,7 @@ public class Cube : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 0;
         bomb = GameObject.FindGameObjectWithTag("Bomb").GetComponent<Bomb>();
         switch (cubeColor)
         {
@@ -45,7 +47,10 @@ public class Cube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (bomb.blow)
+        {
+            Blow();
+        }
         // Reset object position if it falls offscreen
         if (this.gameObject.transform.position.y <= -30)
         {
@@ -121,6 +126,7 @@ public class Cube : MonoBehaviour
         {
             this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
+
     }
 
     private void OnMouseDown()
@@ -168,15 +174,19 @@ public class Cube : MonoBehaviour
         }
     }
 
-    
+
 
     public void Blow()
     {
+        Time.timeScale = 1;
         float distance = Vector2.Distance(bomb.transform.position, this.transform.position);
         Vector3 bombForce = bomb.kiloTons * (transform.position - bomb.transform.position) / (distance * distance);
-        Debug.Log("Bombs away!");
-        this.GetComponent<Rigidbody2D>().AddForce(bombForce, ForceMode2D.Impulse);
-        
+        Debug.Log(gameObject.ToString());
+        if (!blown)
+        {
+            this.GetComponent<Rigidbody2D>().AddForce(bombForce, ForceMode2D.Impulse);
+        }
+        blown = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
