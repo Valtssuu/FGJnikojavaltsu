@@ -24,9 +24,9 @@ public class DragNDrop : MonoBehaviour
             this.gameObject.transform.position = new Vector3(startPosX, startPosY, 0);
         }
 
+        Debug.Log(isOnTopOfSomething);
         // casting ray down 
-        hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.24f, 0), -transform.up, 0.1f, 1 << 8);
-        Debug.DrawRay(this.transform.position + new Vector3(0, -0.24f, 0), -transform.up);
+        hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.33f, 0), -transform.up, 0.1f, 1 << 8);
 
         //if ray hits something we change boolean "isOnTopOfSomething" to true and false if it doesn't hit anything
         if (hit.collider != null)
@@ -36,11 +36,9 @@ public class DragNDrop : MonoBehaviour
         else
         {
             isOnTopOfSomething = false;
+            
         }
-        
-
-        Debug.Log(isOnTopOfSomething);
-
+        Debug.Log(hit.collider);
 
         //when piece is held by mouse/touch
         if (isBeingHeld == true)
@@ -84,10 +82,11 @@ public class DragNDrop : MonoBehaviour
             this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
 
-        //if piece is on top of something and it has snapped to grid
+        //if piece has snapped to grid
         //rigidbody changes from dynamic to kinematic
 
-        if(isOnTopOfSomething == true)
+        
+        if (isSnapped == true)
         {
             if (isSnapped == true)
             {
@@ -133,7 +132,6 @@ public class DragNDrop : MonoBehaviour
                 {
                     this.transform.position = collision.gameObject.transform.position;
                     isSnapped = true;
-                    gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
                 }
                 else
                 {
