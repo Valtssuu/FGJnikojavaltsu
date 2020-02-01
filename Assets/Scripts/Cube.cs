@@ -27,7 +27,6 @@ public class Cube : MonoBehaviour
 
     void Start()
     {
-        Time.timeScale = 0;
         bomb = GameObject.FindGameObjectWithTag("Bomb").GetComponent<Bomb>();
         switch (cubeColor)
         {
@@ -173,7 +172,6 @@ public class Cube : MonoBehaviour
 
     public void Blow()
     {
-        Time.timeScale = 1;
         float distance = Vector2.Distance(bomb.transform.position, this.transform.position);
         Vector3 bombForce = bomb.kiloTons * (transform.position - bomb.transform.position) / (distance * distance);
         Debug.Log("Bombs away!");
