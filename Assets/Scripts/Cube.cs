@@ -17,14 +17,13 @@ public class Cube : MonoBehaviour
     private bool blown = false;
     public CubeColor cubeColor;
     private string gridColor;
-    private float startPosX = 0;
-    private float startPosY = 0;
     private bool isBeingHeld = false;
+    private bool allowSnapping = false;
     public bool isSnapped = false;
     private bool isOnTopOfSomething = false;
     // Boolean flag to check if object is colliding with ground object
     private bool borderCollision = false;
-    private List<string> borderCollisions = new List<string>();
+    private HashSet<string> borderCollisions = new HashSet<string>();
 
     public RaycastHit2D hit;
 
@@ -50,6 +49,8 @@ public class Cube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RigidbodyType2D bodyType = this.gameObject.GetComponent<Rigidbody2D>().bodyType;
+
         if (bomb.blow)
         {
 
@@ -58,11 +59,12 @@ public class Cube : MonoBehaviour
         // Reset object position if it falls offscreen
         if (this.gameObject.transform.position.y <= -30)
         {
-            this.gameObject.transform.position = new Vector3(startPosX, startPosY, 0);
+            this.gameObject.transform.position = new Vector3(0, 0, 0);
+            this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
 
         // casting ray down 
-        hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.53f, 0), -transform.up, 0.1f, 1 << 8);
+        hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.63f, 0), -transform.up, 0.1f, 1 << 8);
 
         //if ray hits something we change boolean "isOnTopOfSomething" to true and false if it doesn't hit anything
         if (hit.collider != null)
@@ -75,12 +77,11 @@ public class Cube : MonoBehaviour
         }
 
         //when piece is held by mouse/touch
-
         if (isBeingHeld == true)
         {
-            // New y-axis position when dragging an object
+            // New y-axis position when dragging the object
             float newPosX, newPosY;
-            // Object's xy-axis components before checking curcor dragging
+            // Object's xy-axis components before checking mouse dragging
             float objectPosX = this.gameObject.transform.position.x;
             float objectPosY = this.gameObject.transform.position.y;
             // Booleans to check if dragging along either of the axes should be restricted
@@ -88,7 +89,7 @@ public class Cube : MonoBehaviour
             bool restrictY = false;
 
             //gravity is disabled and piece follows mouses/touches position
-            this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            bodyType = RigidbodyType2D.Static;
             Vector3 mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
             transform.rotation = Quaternion.identity;
@@ -111,10 +112,9 @@ public class Cube : MonoBehaviour
                 }
             }
 
-            // Stop restricting either of the axes if object is dragged towards the centre
+            // Stop restricting axes if object is dragged towards the center
             if (restrictX && Mathf.Abs(mousePos.x) < Mathf.Abs(objectPosX))
             {
-                Debug.Log("YEET");
                 restrictX = false;
             }
 
@@ -127,6 +127,7 @@ public class Cube : MonoBehaviour
             if (!restrictX && !restrictX && !restrictY && borderCollision)
             {
                 borderCollision = false;
+                borderCollisions.Clear();
             }
 
             // Set new x and y coordinates for the object depending on if axes are restricted or not
@@ -144,50 +145,54 @@ public class Cube : MonoBehaviour
                 newPosY = objectPosY;
             }
 
-            // Object is not in collision and can move freely with cursor
             else
             {
                 newPosY = mousePos.y;
             }
 
-            this.gameObject.transform.localPosition = new Vector3(newPosX, newPosY, 0);
+            this.gameObject.transform.position = new Vector3(newPosX, newPosY, 0);
         }
         else
         {
-            this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            bodyType = RigidbodyType2D.Dynamic;
         }
 
         //if piece has snapped to grid
         //rigidbody changes from dynamic to kinematic
-
         if (isSnapped == true)
         {
-            this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            bodyType = RigidbodyType2D.Kinematic;
             transform.rotation = Quaternion.identity;
             starParticle.SetActive(true);
         }
         else
         {
-            this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            bodyType = RigidbodyType2D.Dynamic;
         }
     }
 
     private void OnMouseDown()
     {
         //when player holds mouse or touch isBeingHeld changes to true
-        if (isSnapped == false)
+        if (isSnapped == false && Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            isBeingHeld = true;
+            // Allow snapping only after player touches first object
+            if (allowSnapping == false)
             {
-                isBeingHeld = true;
+                allowSnapping = true;
             }
         }
     }
 
     private void OnMouseUp()
     {
-        //on realease isBeingHeld changes to false
-        isBeingHeld = false;
+        if (isBeingHeld == true)
+        {
+            // On release isBeingHeld changes to false and object velocity is set to zero
+            isBeingHeld = false;
+            this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -196,26 +201,19 @@ public class Cube : MonoBehaviour
         if (collision.gameObject.tag == "ScreenBorder")
         {
             borderCollision = true;
-
             borderCollisions.Add(collision.gameObject.name);
         }
 
         //when inside gridslots trigger piece snaps to it
-        if (isBeingHeld == false)
+        if (isBeingHeld == false && collision.gameObject.tag == gridColor && isOnTopOfSomething == true && allowSnapping == true)
         {
-            if (collision.gameObject.tag == gridColor)
-            {
-                if (isOnTopOfSomething == true)
-                {
-                    this.transform.position = collision.gameObject.transform.position;
-                    isSnapped = true;
-                }
-                else
-                {
-                    isSnapped = false;
-                    gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-                }
-            }
+            this.transform.position = collision.gameObject.transform.position;
+            isSnapped = true;
+        }
+        else
+        {
+            isSnapped = false;
+            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
     }
 
@@ -233,7 +231,6 @@ public class Cube : MonoBehaviour
         Time.timeScale = 1;
         float distance = Vector2.Distance(bomb.transform.position, this.transform.position);
         Vector3 bombForce = bomb.kiloTons * (transform.position - bomb.transform.position) / (distance * distance);
-        Debug.Log(gameObject.ToString());
         if (!blown)
         {
             this.GetComponent<Rigidbody2D>().AddForce(bombForce, ForceMode2D.Impulse);
