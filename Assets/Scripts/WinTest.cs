@@ -5,11 +5,12 @@ using UnityEngine;
 public class WinTest : MonoBehaviour
 {
     List<GameObject> Pieces = new List<GameObject>();
-    
-
+    public GameObject winPanel;
+    public GameObject timer;
     // Start is called before the first frame update
     void Start()
     {
+        
         foreach(GameObject Piece in GameObject.FindGameObjectsWithTag("Piece"))
         {
             Pieces.Add(Piece);
@@ -22,6 +23,8 @@ public class WinTest : MonoBehaviour
         if (CheckWin())
         {
             Debug.Log("Win!");
+            timer.GetComponent<Timer>().finished = true;
+            winPanel.SetActive(true);
         }
     }
 

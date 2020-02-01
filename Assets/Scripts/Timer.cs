@@ -8,18 +8,21 @@ public class Timer : MonoBehaviour
 {
     public float targetTime = 60;
     public Text timer;
-
+    public bool finished;
     void Update()
     {
-
-        targetTime -= Time.deltaTime;
-
-        if (targetTime <= 0)
+        if (!finished)
         {
-            timerEnded();
+            targetTime -= Time.deltaTime;
+
+            if (targetTime <= 0)
+            {
+                timerEnded();
+            }
+
+            timer.text = targetTime.ToString("#.00");
         }
-        
-        timer.text = targetTime.ToString("#.00");
+       
 
     }
 

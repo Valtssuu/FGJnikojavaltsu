@@ -9,6 +9,7 @@ TagManager:
   - GridYellow
   - GridRed
   - Piece
+  - GameCanvas
   layers:
   - Default
   - TransparentFX
