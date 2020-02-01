@@ -170,9 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f472be635b49f354fad24b1b51c270d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starParticle: {fileID: 507353542736380331}
   cubeColor: 2
+  bomb: {fileID: 0}
   isSnapped: 0
+  particleStar: {fileID: 507353542736380331}
 --- !u!1001 &507183765838569259
 PrefabInstance:
   m_ObjectHideFlags: 0

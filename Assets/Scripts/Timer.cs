@@ -12,11 +12,15 @@ public class Timer : MonoBehaviour
 
     [SerializeField] private GameObject gridParent = null;
 
+    private void Start()
+    {
+        StartCoroutine("GridOn");
+    }
     void Update()
     {
+
         if (!finished)
         {
-            gridParent.SetActive(true);
             targetTime -= Time.deltaTime;
 
             if (targetTime <= 0)
@@ -37,4 +41,10 @@ public class Timer : MonoBehaviour
 
     }
 
+    private IEnumerator GridOn()
+    {
+        yield return new WaitForSeconds(1);
+        gridParent.SetActive(true);
+
+    }
 }

@@ -11,6 +11,8 @@ TagManager:
   - GameCanvas
   - GridBlue
   - ScreenBorder
+  - Ground
+  - Bomb
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
 
     public GameObject pausePanel;
-
+    public GameObject detonateButton;
     
 
     public void LevelSelection()
@@ -52,4 +52,10 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
+
+    public void Detonate()
+    {
+        detonateButton.SetActive(false);
+    }
+
 }
