@@ -13,6 +13,8 @@ public class Cube : MonoBehaviour
     }
 
     public GameObject starParticle;
+    public Bomb bomb;
+    private bool blown = false;
     public CubeColor cubeColor;
     private string gridColor;
     private float startPosX = 0;
@@ -28,6 +30,9 @@ public class Cube : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 0;
+        bomb = GameObject.FindGameObjectWithTag("Bomb").GetComponent<Bomb>();
+
         switch (cubeColor)
         {
             case CubeColor.RedCube:
@@ -38,15 +43,18 @@ public class Cube : MonoBehaviour
                 break;
             case CubeColor.BlueCube:
                 gridColor = "GridBlue";
-                break;            
+                break;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (bomb.blow)
+        {
 
-        
+            Blow();
+        }
         // Reset object position if it falls offscreen
         if (this.gameObject.transform.position.y <= -30)
         {
@@ -54,7 +62,7 @@ public class Cube : MonoBehaviour
         }
 
         // casting ray down 
-        hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.63f, 0), -transform.up, 0.1f, 1 << 8);
+        hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.53f, 0), -transform.up, 0.1f, 1 << 8);
 
         //if ray hits something we change boolean "isOnTopOfSomething" to true and false if it doesn't hit anything
         if (hit.collider != null)
@@ -218,5 +226,18 @@ public class Cube : MonoBehaviour
         {
             isSnapped = false;
         }
+    }
+
+    public void Blow()
+    {
+        Time.timeScale = 1;
+        float distance = Vector2.Distance(bomb.transform.position, this.transform.position);
+        Vector3 bombForce = bomb.kiloTons * (transform.position - bomb.transform.position) / (distance * distance);
+        Debug.Log(gameObject.ToString());
+        if (!blown)
+        {
+            this.GetComponent<Rigidbody2D>().AddForce(bombForce, ForceMode2D.Impulse);
+        }
+        blown = true;
     }
 }
