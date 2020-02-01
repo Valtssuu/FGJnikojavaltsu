@@ -9,10 +9,14 @@ public class Timer : MonoBehaviour
     public float targetTime = 60;
     public Text timer;
     public bool finished;
+
+    [SerializeField] private GameObject gridParent = null;
+
     void Update()
     {
         if (!finished)
         {
+            gridParent.SetActive(true);
             targetTime -= Time.deltaTime;
 
             if (targetTime <= 0)

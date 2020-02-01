@@ -12,6 +12,7 @@ public class Cube : MonoBehaviour
         BlueCube
     }
 
+    public GameObject starParticle;
     public CubeColor cubeColor;
     private string gridColor;
     private float startPosX = 0;
@@ -43,6 +44,8 @@ public class Cube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
         // Reset object position if it falls offscreen
         if (this.gameObject.transform.position.y <= -30)
         {
@@ -50,7 +53,7 @@ public class Cube : MonoBehaviour
         }
 
         // casting ray down 
-        hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.33f, 0), -transform.up, 0.1f, 1 << 8);
+        hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.35f, 0), -transform.up, 0.1f, 1 << 8);
 
         //if ray hits something we change boolean "isOnTopOfSomething" to true and false if it doesn't hit anything
         if (hit.collider != null)
@@ -112,6 +115,7 @@ public class Cube : MonoBehaviour
         {
             this.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             transform.rotation = Quaternion.identity;
+            starParticle.SetActive(true);
         }
         else
         {

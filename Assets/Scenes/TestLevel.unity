@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &19465398
 Transform:
   m_ObjectHideFlags: 0
@@ -325,12 +325,12 @@ PrefabInstance:
     - target: {fileID: 4900428406712329647, guid: 82fd39aab83628f48998651098a15ab2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.8243777
+      value: 0.254
       objectReference: {fileID: 0}
     - target: {fileID: 4900428406712329647, guid: 82fd39aab83628f48998651098a15ab2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.0024114
+      value: -4.155
       objectReference: {fileID: 0}
     - target: {fileID: 4900428406712329647, guid: 82fd39aab83628f48998651098a15ab2,
         type: 3}
@@ -464,12 +464,12 @@ PrefabInstance:
     - target: {fileID: 4900428406712329647, guid: 82fd39aab83628f48998651098a15ab2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6609013
+      value: 0.252
       objectReference: {fileID: 0}
     - target: {fileID: 4900428406712329647, guid: 82fd39aab83628f48998651098a15ab2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.124344
+      value: -4.65
       objectReference: {fileID: 0}
     - target: {fileID: 4900428406712329647, guid: 82fd39aab83628f48998651098a15ab2,
         type: 3}
@@ -617,6 +617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f472be635b49f354fad24b1b51c270d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starParticle: {fileID: 0}
   cubeColor: 0
   isSnapped: 0
 --- !u!1 &519420028
@@ -833,6 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f472be635b49f354fad24b1b51c270d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starParticle: {fileID: 0}
   cubeColor: 1
   isSnapped: 0
 --- !u!1001 &1048946242
@@ -999,12 +1001,12 @@ PrefabInstance:
     - target: {fileID: 4900428406712329647, guid: 898f54c2b35cce446855f0e7f0442148,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6660788
+      value: -0.248
       objectReference: {fileID: 0}
     - target: {fileID: 4900428406712329647, guid: 898f54c2b35cce446855f0e7f0442148,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.2582884
+      value: -4.649
       objectReference: {fileID: 0}
     - target: {fileID: 4900428406712329647, guid: 898f54c2b35cce446855f0e7f0442148,
         type: 3}
@@ -1323,7 +1325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490828579}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.66, y: -1.28, z: 0}
+  m_LocalPosition: {x: 0.01, y: -2, z: 0}
   m_LocalScale: {x: 0.642, y: 0.642, z: 0.642}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1341,7 +1343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778e465eb2fab4d46a47b11311c16962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridParent: {fileID: 0}
 --- !u!50 &1490828583
 Rigidbody2D:
   serializedVersion: 4
@@ -1406,12 +1407,12 @@ PrefabInstance:
     - target: {fileID: 4900428406712329647, guid: 2a5ef690d11fdea4394999042a412fe5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6689717
+      value: -0.248
       objectReference: {fileID: 0}
     - target: {fileID: 4900428406712329647, guid: 2a5ef690d11fdea4394999042a412fe5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.074123
+      value: -3.65
       objectReference: {fileID: 0}
     - target: {fileID: 4900428406712329647, guid: 2a5ef690d11fdea4394999042a412fe5,
         type: 3}
@@ -1478,6 +1479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f472be635b49f354fad24b1b51c270d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starParticle: {fileID: 0}
   cubeColor: 1
   isSnapped: 0
 --- !u!1 &1912864408
@@ -1647,12 +1649,12 @@ PrefabInstance:
     - target: {fileID: 4900428406712329647, guid: 898f54c2b35cce446855f0e7f0442148,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7456474
+      value: -0.248
       objectReference: {fileID: 0}
     - target: {fileID: 4900428406712329647, guid: 898f54c2b35cce446855f0e7f0442148,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8985864
+      value: -4.151
       objectReference: {fileID: 0}
     - target: {fileID: 4900428406712329647, guid: 898f54c2b35cce446855f0e7f0442148,
         type: 3}
@@ -1791,12 +1793,12 @@ PrefabInstance:
     - target: {fileID: 4900428406712329647, guid: 2a5ef690d11fdea4394999042a412fe5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8619704
+      value: 0.254
       objectReference: {fileID: 0}
     - target: {fileID: 4900428406712329647, guid: 2a5ef690d11fdea4394999042a412fe5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.820572
+      value: -3.652
       objectReference: {fileID: 0}
     - target: {fileID: 4900428406712329647, guid: 2a5ef690d11fdea4394999042a412fe5,
         type: 3}
@@ -1863,6 +1865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f472be635b49f354fad24b1b51c270d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starParticle: {fileID: 0}
   cubeColor: 0
   isSnapped: 0
 --- !u!1001 &6929985300466029808
@@ -2001,6 +2004,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299364950376777341, guid: 3021f2dc030cb0f42a7b48d980869f0f,
+        type: 3}
+      propertyPath: gridParent
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3021f2dc030cb0f42a7b48d980869f0f, type: 3}

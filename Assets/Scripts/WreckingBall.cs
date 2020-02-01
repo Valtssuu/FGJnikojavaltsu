@@ -7,7 +7,6 @@ public class WreckingBall : MonoBehaviour
     // Start is called before the first frame update
     private bool isBeingHeld = false;
 
-    [SerializeField] private GameObject gridParent = null;
     
 
     // Update is called once per frame
@@ -57,7 +56,6 @@ public class WreckingBall : MonoBehaviour
             Vector2 force = new Vector2(this.transform.position.x, this.transform.position.y);
 
             rb.AddForce(force * 20, ForceMode2D.Impulse);
-            gridParent.SetActive(true);
         }
     }
 }
