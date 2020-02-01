@@ -13,6 +13,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("TestLevel");
     }
 
+    public void LevelSelection()
+    {
+        SceneManager.LoadScene("LevelSelection");
+    }
+
     public void PauseButton()
     {
         Time.timeScale = 0;
