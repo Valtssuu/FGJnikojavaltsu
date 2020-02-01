@@ -375,7 +375,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 895442150742756519, guid: 82fd39aab83628f48998651098a15ab2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 82fd39aab83628f48998651098a15ab2, type: 3}
 --- !u!1001 &364387854
 PrefabInstance:
@@ -444,7 +445,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 895442150742756519, guid: 82fd39aab83628f48998651098a15ab2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 82fd39aab83628f48998651098a15ab2, type: 3}
 --- !u!1001 &425055718
 PrefabInstance:
@@ -526,6 +528,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1048946242}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &503688137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1628430080621495747, guid: 898f54c2b35cce446855f0e7f0442148,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994245413}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &503688138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503688137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f472be635b49f354fad24b1b51c270d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeColor: 0
+  isSnapped: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,6 +744,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 425055718}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &739564239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1628430080621495747, guid: 82fd39aab83628f48998651098a15ab2,
+    type: 3}
+  m_PrefabInstance: {fileID: 364387854}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &739564240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739564239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f472be635b49f354fad24b1b51c270d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeColor: 1
+  isSnapped: 0
 --- !u!1001 &1048946242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -865,6 +907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 7783589238930948745, guid: 898f54c2b35cce446855f0e7f0442148, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 898f54c2b35cce446855f0e7f0442148, type: 3}
 --- !u!4 &1251869337 stripped
 Transform:
@@ -1063,6 +1106,26 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6929985300466029808}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1874994801 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1628430080621495747, guid: 82fd39aab83628f48998651098a15ab2,
+    type: 3}
+  m_PrefabInstance: {fileID: 158263046}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1874994802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874994801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f472be635b49f354fad24b1b51c270d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubeColor: 1
+  isSnapped: 0
 --- !u!1 &1912864408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,7 +1345,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7783589238930948745, guid: 898f54c2b35cce446855f0e7f0442148, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 898f54c2b35cce446855f0e7f0442148, type: 3}
 --- !u!1001 &2036318950
 PrefabInstance:
@@ -1373,9 +1437,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2113222806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb7debb23cd51ca4ab8be86e3456c303, type: 3}
+  m_Script: {fileID: 11500000, guid: f472be635b49f354fad24b1b51c270d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeColor: 0
   isSnapped: 0
 --- !u!1001 &6929985300466029808
 PrefabInstance:

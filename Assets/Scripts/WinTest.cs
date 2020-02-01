@@ -32,20 +32,10 @@ public class WinTest : MonoBehaviour
     {
         foreach (GameObject Piece in Pieces)
         {
-            RedCube redCube = Piece.GetComponent<RedCube>();
-            if (redCube == null)
+            if (Piece.GetComponent<Cube>().isSnapped == false)
             {
-                if (Piece.GetComponent<YellowCube>().isSnapped == false)
-                    return false;
+                return false;
             }
-            else
-            {
-                if (Piece.GetComponent<RedCube>().isSnapped == false)
-                {
-                    return false;
-                }
-            }
-               
         }
         return true;
     }
