@@ -77,8 +77,10 @@ public class Cube : MonoBehaviour
         }
 
         //when piece is held by mouse/touch
-        if (isBeingHeld == true)
+        
+        if (isBeingHeld == true )
         {
+            
             // New y-axis position when dragging the object
             float newPosX, newPosY;
             // Object's xy-axis components before checking mouse dragging
@@ -191,7 +193,7 @@ public class Cube : MonoBehaviour
         {
             // On release isBeingHeld changes to false and object velocity is set to zero
             isBeingHeld = false;
-            this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            //this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
     }
 
@@ -213,7 +215,6 @@ public class Cube : MonoBehaviour
         else
         {
             isSnapped = false;
-            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
     }
 
@@ -236,5 +237,13 @@ public class Cube : MonoBehaviour
             this.GetComponent<Rigidbody2D>().AddForce(bombForce, ForceMode2D.Impulse);
         }
         blown = true;
+        StartCoroutine("TurnBombOff");
+    }
+
+    private IEnumerator TurnBombOff()
+    {
+        yield return new WaitForSeconds(0.1f);
+        bomb.blow = false;
+
     }
 }
