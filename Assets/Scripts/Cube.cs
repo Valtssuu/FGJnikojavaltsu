@@ -72,7 +72,12 @@ public class Cube : MonoBehaviour
         //if ray hits something we change boolean "isOnTopOfSomething" to true and false if it doesn't hit anything
         if (hit.collider != null)
         {
-            isOnTopOfSomething = true;
+            GameObject colliderObject = hit.collider.gameObject;
+            // If raycast hits ground or snapped object, allow snapping
+            if (colliderObject.name == "Ground" || (colliderObject.tag == "Piece" && colliderObject.GetComponent<Cube>().isSnapped))
+            {
+                isOnTopOfSomething = true;
+            }
         }
         else
         {
@@ -214,15 +219,6 @@ public class Cube : MonoBehaviour
         {
             this.transform.position = collision.gameObject.transform.position + new Vector3(0,0,0.25f);
             isSnapped = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        //when exiting trigger snapping stops
-        if (collision.gameObject.tag == gridColor)
-        {
-            isSnapped = false;
         }
     }
 
