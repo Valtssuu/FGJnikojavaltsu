@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4878985150613396433}
   - component: {fileID: 1119808683939106042}
   - component: {fileID: 8496204921420607297}
+  - component: {fileID: -4310903963135213041}
   m_Layer: 2
   m_Name: GridBlue
   m_TagString: GridBlue
@@ -107,3 +108,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.5, y: 3.68}
   m_EdgeRadius: 0
+--- !u!114 &-4310903963135213041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677140609472397557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8af7b3a0acb4444a5fd32197f86adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFree: 1
