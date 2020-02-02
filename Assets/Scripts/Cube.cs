@@ -212,10 +212,12 @@ public class Cube : MonoBehaviour
             this.transform.position = collision.gameObject.transform.position;
             isSnapped = true;
         }
+        /*
         else
         {
             isSnapped = false;
         }
+        */
     }
 
     private void OnTriggerExit2D(Collider2D collision)
