@@ -212,7 +212,7 @@ public class Cube : MonoBehaviour
         //when inside gridslots trigger piece snaps to it
         if (isBeingHeld == false && collision.gameObject.tag == gridColor && isOnTopOfSomething == true && allowSnapping == true)
         {
-            this.transform.position = collision.gameObject.transform.position;
+            this.transform.position = collision.gameObject.transform.position + new Vector3(0,0,0.25f);
             isSnapped = true;
         }
     }
