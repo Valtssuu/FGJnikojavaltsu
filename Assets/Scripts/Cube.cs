@@ -49,6 +49,7 @@ public class Cube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         RigidbodyType2D bodyType = this.gameObject.GetComponent<Rigidbody2D>().bodyType;
 
         if (bomb.blow)
@@ -61,6 +62,8 @@ public class Cube : MonoBehaviour
         {
             this.gameObject.transform.position = new Vector3(0, 0, 0);
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            // Disallow snapping to prevent cheesing the game by throwing the boxes out and respawning them
+            allowSnapping = false;
         }
 
         // casting ray down 
@@ -175,8 +178,8 @@ public class Cube : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //when player holds mouse or touch isBeingHeld changes to true
-        if (isSnapped == false && Input.GetMouseButtonDown(0))
+        // When player touches a Cube, it's not snapped and bomb is blown, allow dragging and snapping
+        if (isSnapped == false && Input.GetMouseButtonDown(0) && blown == true)
         {
             isBeingHeld = true;
             // Allow snapping only after player touches first object
@@ -193,7 +196,7 @@ public class Cube : MonoBehaviour
         {
             // On release isBeingHeld changes to false and object velocity is set to zero
             isBeingHeld = false;
-            //this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
     }
 
@@ -212,12 +215,6 @@ public class Cube : MonoBehaviour
             this.transform.position = collision.gameObject.transform.position;
             isSnapped = true;
         }
-        /*
-        else
-        {
-            isSnapped = false;
-        }
-        */
     }
 
     private void OnTriggerExit2D(Collider2D collision)
