@@ -168,7 +168,8 @@ public class Cube : MonoBehaviour
         if (isSnapped == true)
         {
             // Freeze Cube position without changing its physics
-            this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+            this.transform.rotation = Quaternion.identity;
+            this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             starParticle.SetActive(true);
         }
         else
