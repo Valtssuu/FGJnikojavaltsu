@@ -168,8 +168,15 @@ public class Cube : MonoBehaviour
         if (isSnapped == true)
         {
             // Freeze Cube position without changing its physics
+<<<<<<< HEAD
             this.transform.rotation = Quaternion.identity;
             this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+||||||| eddf7c5
+            this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+=======
+            transform.rotation = Quaternion.identity;
+            this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+>>>>>>> 81156b7f47d46df4947ffb4c4635cc237afda0b9
             starParticle.SetActive(true);
         }
         else
@@ -181,6 +188,9 @@ public class Cube : MonoBehaviour
             }
         }
     }
+
+
+
 
     private void OnMouseDown()
     {
@@ -216,10 +226,13 @@ public class Cube : MonoBehaviour
         }
 
         //when inside gridslots trigger piece snaps to it
-        if (isBeingHeld == false && collision.gameObject.tag == gridColor && isOnTopOfSomething == true && allowSnapping == true)
+        if (isBeingHeld == false && collision.gameObject.tag == gridColor && isOnTopOfSomething == true 
+            && allowSnapping == true && collision.gameObject.GetComponent<Grid>().isFree == true)
         {
             this.transform.position = collision.gameObject.transform.position + new Vector3(0,0,0.25f);
+        
             isSnapped = true;
+            collision.gameObject.GetComponent<Grid>().isFree = false;
         }
     }
 
