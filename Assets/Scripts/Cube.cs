@@ -58,7 +58,7 @@ public class Cube : MonoBehaviour
             Blow();
         }
         // Reset object position if it falls offscreen
-        if (this.gameObject.transform.position.y <= -30)
+        if (this.gameObject.transform.position.y <= -6)
         {
             this.gameObject.transform.position = new Vector3(0, 0, 0);
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
