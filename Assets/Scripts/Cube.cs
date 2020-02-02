@@ -162,22 +162,22 @@ public class Cube : MonoBehaviour
 
             this.gameObject.transform.position = new Vector3(newPosX, newPosY, 0);
         }
-        else
-        {
-            bodyType = RigidbodyType2D.Dynamic;
-        }
 
         //if piece has snapped to grid
         //rigidbody changes from dynamic to kinematic
         if (isSnapped == true)
         {
-            bodyType = RigidbodyType2D.Kinematic;
-            transform.rotation = Quaternion.identity;
+            // Freeze Cube position without changing its physics
+            this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
             starParticle.SetActive(true);
         }
         else
         {
-            bodyType = RigidbodyType2D.Dynamic;
+            // If Cube is not snapped or being held and its body type is still static, change it to dynamic
+            if (bodyType == RigidbodyType2D.Static)
+            {
+                bodyType = RigidbodyType2D.Dynamic;
+            }
         }
     }
 
