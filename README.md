@@ -4,7 +4,7 @@ Destroy buildings aaand BUILD THEM BACK to their original positions. You have to
 
 ## Whats this?
 
-Crash & build is a mobile game made for Android systems. It was developed in two days at Finnish Game Jam 2020, which was part of the event Global Game Jam 2020. It is totally free and open source game. 
+Crash & build is a mobile game made for Android systems. It was developed in a weekend at Finnish Game Jam 2020, which was part of the event Global Game Jam 2020. It is totally free and open source game. 
 
 Feel free to download this repository or get the latest launch & play ready .apk build from [here](https://drive.google.com/file/d/1H3_SXRoDWPGI1b9mhUmAHvZbV8-AgaWe/view).
 
