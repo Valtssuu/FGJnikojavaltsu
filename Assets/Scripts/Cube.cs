@@ -66,10 +66,10 @@ public class Cube : MonoBehaviour
             allowSnapping = false;
         }
 
-        // casting ray down 
+        // Casting ray down 
         hit = Physics2D.Raycast(this.transform.position + new Vector3(0, -0.63f, 0), -transform.up, 0.1f, 1 << 8);
 
-        //if ray hits something we change boolean "isOnTopOfSomething" to true and false if it doesn't hit anything
+        // If ray hits something we change boolean "isOnTopOfSomething" to true and false if it doesn't hit anything
         if (hit.collider != null)
         {
             GameObject colliderObject = hit.collider.gameObject;
@@ -84,7 +84,7 @@ public class Cube : MonoBehaviour
             isOnTopOfSomething = false;
         }
 
-        //when piece is held by mouse/touch
+        // When piece is held by mouse/touch
         
         if (isBeingHeld == true )
         {
@@ -98,7 +98,7 @@ public class Cube : MonoBehaviour
             bool restrictX = false;
             bool restrictY = false;
 
-            //gravity is disabled and piece follows mouses/touches position
+            // Gravity is disabled and piece follows mouses/touches position
             bodyType = RigidbodyType2D.Static;
             Vector3 mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -163,8 +163,7 @@ public class Cube : MonoBehaviour
             this.gameObject.transform.position = new Vector3(newPosX, newPosY, 0);
         }
 
-        //if piece has snapped to grid
-        //rigidbody changes from dynamic to kinematic
+        // If piece has snapped to grid freeze all movement of the piece
         if (isSnapped == true)
         {
             // Freeze Cube position without changing its physics
@@ -218,7 +217,7 @@ public class Cube : MonoBehaviour
             borderCollisions.Add(collision.gameObject.name);
         }
 
-        //when inside gridslots trigger piece snaps to it
+        // When inside gridslots trigger piece snaps to it
         if (isBeingHeld == false && collision.gameObject.tag == gridColor && isOnTopOfSomething == true 
             && allowSnapping == true && collision.gameObject.GetComponent<Grid>().isFree == true)
         {
